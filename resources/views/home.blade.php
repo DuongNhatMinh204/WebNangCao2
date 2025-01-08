@@ -6,26 +6,27 @@
     <title>Home</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="{{asset('css/home.css')}}">
 </head>
 <body>
 <header>
     <a href="#" class="logo"><span>Future</span>Wonders</a>
     <nav class="bar">
-        <a href="home" class="indam">Home</a>
-        <a href="booking">Booking</a>
-        <a href="trending">Trending</a>
-        <a href="news">News</a>
-        <a href="package">Packages</a>
-        <a href="services">Services</a>
-        <a href="gallery">Gallery</a>
-        <a href="review">Review</a>
-        <a href="contact">Contact</a>
-        <a href="plan-trip">Pay</a>
-    </nav>
+    <a href="{{ route('home') }}" class="indam">Home</a>
+    <a href="{{ route('booking') }}">Booking</a>
+    <a href="{{ route('trending') }}">Trending</a>
+    <a href="{{ route('news') }}">News</a>
+    <a href="{{ route('package') }}">Packages</a>
+    <a href="{{ route('services') }}">Services</a>
+    <a href="{{ route('gallery') }}">Gallery</a>
+    <a href="{{ route('review') }}">Review</a>
+    <a href="{{ route('contact') }}">Contact</a>
+    <a href="{{ route('plan-trip') }}">Pay</a>
+    <a href="{{route('flight')}}">Flight</a>
+</nav>
     <div class="icons">
         <a href="#"><i class="fas fa-search" id="search-btn"></i></a>
-        <a href="user"><i class="fas fa-user" id="login-btn"></i></a>
+        <a href="{{ route('user') }}"><i class="fas fa-user" id="login-btn"></i></a>
     </div>
 
 </header>
@@ -46,7 +47,7 @@
         <video src="images/ocean.mp4" id="video-slider" loop autoplay muted ></video>
     </div>
 </section>
-<script src="/js/home.js"></script>
+<script src="{{ asset('js/home.js') }}"></script>
 <section class="slideshow-container">
     <div class="slideshow">
         <img src="/images/1.jpg" alt="">
