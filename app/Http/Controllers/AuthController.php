@@ -18,7 +18,8 @@ class AuthController extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
         if ($validator->fails()){
-            return response()->json(['erors'=>$validator->errors()],422);
+            // return response()->json(['erors'=>$validator->errors()],422);
+            return redirect()->back()->withErrors($validator)->withInput();
         }
         // luu vao csdl
         $user = User::create([
@@ -40,6 +41,8 @@ class AuthController extends Controller
             }
             return redirect('/home')->with('success', 'User login successfully');
         }
-        return response()->json(['error'=> 'Invalid'],401);
+        // return response()->json(['error'=> 'Invalid'],401);
+        // Trả về thông báo lỗi về phía frontend
+        return redirect()->back()->with('error', 'Thông tin đăng nhập không đúng');
     }
 }

@@ -7,6 +7,24 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="/css/user.css">
+  <style>
+    /* CSS cho thông báo lỗi */
+    .error-message {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 10px;
+      text-align: center;
+      font-size: 16px;
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      border: 1px solid #f5c6cb;
+      border-radius: 5px;
+      z-index: 1000;
+    }
+  </style>
 </head>
 <body>
 <header>
@@ -32,6 +50,24 @@
   <video src="/images/waves.mp4" id="video-slider" loop autoplay muted ></video>
 </div>
 
+<!-- Hiển thị thông báo lỗi đăng nhập nếu có -->
+@if(session('error'))
+  <div class="error-message">
+    {{ session('error') }}
+  </div>
+@endif
+
+<!-- Hiển thị thông báo lỗi đăng ký nếu có -->
+@if($errors->any())
+  <div class="error-message">
+    <ul>
+      @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
+
 <!-- Form Đăng Nhập -->
 <form id="sign-in-form" action="/login" method="POST">
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -49,9 +85,6 @@
     <tr>
       <td colspan="2"><input type="submit" value="Sign In"></td>
     </tr>
-    <tr>
-      <td colspan="2" class="error-message"></td>
-    </tr>
   </table>
 </form>
 
@@ -64,13 +97,13 @@
       <td><button type="button" id="show-sign-up" class="indam">SignUp</button></td>
     </tr>
     <tr>
-      <td colspan="2"><input type="text" name="name" placeholder="Enter your name: " required></td>
+      <td colspan="2"><input type="text" name="name" placeholder="Enter your name: " value="{{ old('name') }}" required></td>
     </tr>
     <tr>
-      <td colspan="2"><input type="email" name="email" placeholder="Enter your email: " required></td>
+      <td colspan="2"><input type="email" name="email" placeholder="Enter your email: " value="{{ old('email') }}" required></td>
     </tr>
     <tr>
-      <td colspan="2"><input type="tel" name="telephone" placeholder="Enter your telephone: " required></td>
+      <td colspan="2"><input type="tel" name="telephone" placeholder="Enter your telephone: " value="{{ old('telephone') }}" required></td>
     </tr>
     <tr>
       <td colspan="2"><input type="password" name="password" placeholder="Create your password" required></td>
@@ -80,9 +113,6 @@
     </tr>
     <tr>
       <td colspan="2"><input type="submit" value="Sign Up"></td>
-    </tr>
-    <tr>
-      <td colspan="2" class="error-message"></td>
     </tr>
   </table>
 </form>
@@ -98,12 +128,6 @@
   document.getElementById('show-sign-up').addEventListener('click', () => {
     signInForm.classList.add('hidden');
     signUpForm.classList.remove('hidden');
-  });
-
-  // Hiển thị lỗi từ server (nếu có)
-  document.querySelectorAll('.error-message').forEach((element) => {
-    // Đây là nơi bạn thêm xử lý lỗi từ server trả về
-    element.innerHTML = ''; // Xóa thông báo cũ (nếu có)
   });
 </script>
 </body>

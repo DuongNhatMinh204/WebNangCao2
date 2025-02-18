@@ -43,16 +43,13 @@
     <a href="#" class="btn btn-pdf"><i class="fa fa-file-pdf"></i> Xuất PDF</a>
     <a href="#" class="btn btn-delete-all"><i class="fa fa-trash"></i> Xóa tất cả</a>
 </div>
-<!-- tìm kiếm -->
-<!-- Nút để thu/nhả -->
-<button class="toggle-btn" onclick="toggleFilter()">Thu gọn bộ lọc</button>
 
-<!-- Container có thể thu/nhả -->
+<button class="toggle-btn" onclick="toggleFilter()">Thu gọn bộ lọc</button>
+<div class="items-per-page">     
+
 <div class="filter-container" id="filterContainer">
-    <!-- Dropdown để chọn số lượng danh mục hiển thị -->
-    <div class="items-per-page">
+        <select id="items" name="items">     
         <label for="items">Hiện</label>
-        <select id="items" name="items">
             <option value="10">10</option>
             <option value="25">25</option>
             <option value="50">50</option>

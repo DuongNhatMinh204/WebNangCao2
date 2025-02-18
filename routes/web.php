@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/home', function () {
     return view('home');
@@ -72,3 +73,8 @@ Route::post("/booking/create",[BookingController::class,'create'])->name('bookin
 
 Route::get('/booking/details',[BookingController::class,'getBookingDetails']) ;
 Route::delete('/booking/delete/{id}', [BookingController::class, 'delete'])->name('booking.delete');
+
+// Thay đổi Route cho trang admin sử dụng controller
+Route::get('/admin', [AdminController::class, 'listAccounts'])->name('admin');
+Route::get('admin/accounts', [AdminController::class, 'listAccounts'])->name('admin.accounts');
+

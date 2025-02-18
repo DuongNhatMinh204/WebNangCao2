@@ -47,7 +47,7 @@
     <a href="#" class="logo"><span>Future</span>Wonders</a>
     <nav class="bar">
         <a href="" class="indam">Trip Management</a>
-        <a href="admin_account" >Account Management</a>
+        <a href="admin" >Account Management</a>
     </nav>
     <div class="icons">
         <a href=""><i class="fas fa-search" id="search-btn"></i></a>
