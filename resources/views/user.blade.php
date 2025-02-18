@@ -24,20 +24,21 @@
     <a href="plan-trip">Pay</a>
   </nav>
   <div class="icons">
-    <a href=""><i class="fas fa-search" id="search-btn"></i></a>
-    <a href=""><i class="fas fa-user" id="login-btn" style="color: #29b862;"></i></a>
+    <a href="#"><i class="fas fa-search" id="search-btn"></i></a>
+    <a href="#"><i class="fas fa-user" id="login-btn" style="color: #29b862;"></i></a>
   </div>
 </header>
 <div class="video-container">
-  <video src="images/waves.mp4" id="video-slider" loop autoplay muted ></video>
+  <video src="/images/waves.mp4" id="video-slider" loop autoplay muted ></video>
 </div>
 
 <!-- Form Đăng Nhập -->
-<form id="sign-in-form">
+<form id="sign-in-form" action="/login" method="POST">
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <table>
     <tr>
-      <td><button type="button" id="sign-in-button" class="indam">SignIn</button></td>
-      <td><button type="button" id="sign-up-button">SignUp</button></td>
+      <td><button type="button" id="show-sign-in" class="indam">SignIn</button></td>
+      <td><button type="button" id="show-sign-up">SignUp</button></td>
     </tr>
     <tr>
       <td colspan="2"><input type="tel" name="telephone" placeholder="Enter your telephone: " required></td>
@@ -46,18 +47,21 @@
       <td colspan="2"><input type="password" name="password" placeholder="Enter your password" required></td>
     </tr>
     <tr>
-      <td><input type="submit" value="Submit"></td>
-      <td><input type="submit" value="Forgot password"></td>
+      <td colspan="2"><input type="submit" value="Sign In"></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="error-message"></td>
     </tr>
   </table>
 </form>
 
 <!-- Form Đăng Ký -->
-<form id="sign-up-form" class="hidden">
+<form id="sign-up-form" action="/register" method="POST" class="hidden">
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <table>
     <tr>
-      <td><button type="button" id="sign-in-button1">SignIn</button></td>
-      <td><button type="button" id="sign-up-button1" class="indam">SignUp</button></td>
+      <td><button type="button" id="show-sign-in">SignIn</button></td>
+      <td><button type="button" id="show-sign-up" class="indam">SignUp</button></td>
     </tr>
     <tr>
       <td colspan="2"><input type="text" name="name" placeholder="Enter your name: " required></td>
@@ -72,14 +76,35 @@
       <td colspan="2"><input type="password" name="password" placeholder="Create your password" required></td>
     </tr>
     <tr>
-      <td colspan="2"><input type="password" name="confirmPassword" placeholder="Confirm your password" required></td>
+      <td colspan="2"><input type="password" name="password_confirmation" placeholder="Confirm your password" required></td>
     </tr>
     <tr>
-      <td colspan="2"><input type="submit" value="Sign Up" id = "abc"></td>
+      <td colspan="2"><input type="submit" value="Sign Up"></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="error-message"></td>
     </tr>
   </table>
 </form>
 
-<script src="/js/user.js"></script>
+<script>
+  // Script hiển thị form đăng nhập hoặc đăng ký
+  const signInForm = document.getElementById('sign-in-form');
+  const signUpForm = document.getElementById('sign-up-form');
+  document.getElementById('show-sign-in').addEventListener('click', () => {
+    signUpForm.classList.add('hidden');
+    signInForm.classList.remove('hidden');
+  });
+  document.getElementById('show-sign-up').addEventListener('click', () => {
+    signInForm.classList.add('hidden');
+    signUpForm.classList.remove('hidden');
+  });
+
+  // Hiển thị lỗi từ server (nếu có)
+  document.querySelectorAll('.error-message').forEach((element) => {
+    // Đây là nơi bạn thêm xử lý lỗi từ server trả về
+    element.innerHTML = ''; // Xóa thông báo cũ (nếu có)
+  });
+</script>
 </body>
 </html>

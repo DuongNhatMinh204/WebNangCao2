@@ -74,11 +74,8 @@
     <div class="container-footer">
         <div class="footer-preview">
             <h2>About Us</h2>
-            <p>Website developed by group 5 of Phenikaa University</p>
+            <p>Website developed by Duong Nhat Minh</p>
             <a href=""><p>Duong Nhat Minh</p></a>
-            <a href=""><p>Nguyen Thi Kieu Loan</p></a>
-            <a href=""><p>Dinh Nhat Nam</p></a>
-            <a href=""><p>Nguyen Van Yen</p></a>
         </div>
         <div class="footer-preview">
             <h2>Brand Location</h2>

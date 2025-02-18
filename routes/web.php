@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\BookingController;
 
 Route::get('/home', function () {
     return view('home');
@@ -52,3 +53,22 @@ Route::get('/plan-trip', function () {
 Route::get('/user', function () {
     return view('user');
 })->name('user');
+Route::post('/register',[AuthController::class,'register'])->name('register') ;
+Route::get('/login', function () {
+    return view('user'); // View chứa form đăng nhập
+})->name('login');
+
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+
+Route::get('/admin', function () {
+    return view('admin_account');
+})->name('admin'); // doi thanh name moi dc con dung middleware lai khong duoc 
+
+Route::get('/admin_booking', function () {
+    return view('admin_booking');
+})->name('admin_booking');
+
+Route::post("/booking/create",[BookingController::class,'create'])->name('booking.create') ;
+
+Route::get('/booking/details',[BookingController::class,'getBookingDetails']) ;
+Route::delete('/booking/delete/{id}', [BookingController::class, 'delete'])->name('booking.delete');
