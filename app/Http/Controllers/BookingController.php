@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use Illuminate\Support\Facades\Auth;
 class BookingController extends Controller
 {
+    
     public function create(Request $request)
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Bạn cần đăng nhập để đặt chuyến đi');
+        }
+
         // Validate dữ liệu nhập vào
         $validated = $request->validate([
             'palaceName' => 'required|string|max:255',
@@ -24,6 +30,7 @@ class BookingController extends Controller
             'checkinTime' => $validated['checkinTime'],
             'checkoutTime' => $validated['checkoutTime'],
             'hotel' => $validated['hotel'],
+            'user_id' => Auth::id(),
         ]);
 
         // Chuyển hướng người dùng đến trang thành công hoặc thông báo

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,22 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="{{asset('css/home.css')}}">
+    <style>
+        .change-password-btn {
+      background-color: #ff9800;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    .change-password-btn:hover {
+      background-color: #e68900;
+    }
+
+    </style>
 </head>
 <body>
 <header>
@@ -27,6 +44,7 @@
     <div class="icons">
         <a href="#"><i class="fas fa-search" id="search-btn"></i></a>
         <a href="{{ route('user') }}"><i class="fas fa-user" id="login-btn"></i></a>
+        <a href="/change-password" class="change-password-btn">Change Password</a>
     </div>
 
 </header>

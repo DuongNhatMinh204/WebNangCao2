@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('checkinTime');
             $table->date('checkoutTime');
             $table->string('hotel');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Thêm user_id trực tiếp ở đây
             $table->timestamps();
         });
     }

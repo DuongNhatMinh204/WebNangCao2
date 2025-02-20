@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="/css/user.css">
   <style>
-    /* CSS cho thông báo lỗi */
     .error-message {
       background-color: #f8d7da;
       color: #721c24;
@@ -24,6 +23,20 @@
       border-radius: 5px;
       z-index: 1000;
     }
+    .change-password-btn {
+      background-color: #ff9800;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    .change-password-btn:hover {
+      background-color: #e68900;
+    }
+
   </style>
 </head>
 <body>
@@ -50,14 +63,14 @@
   <video src="/images/waves.mp4" id="video-slider" loop autoplay muted ></video>
 </div>
 
-<!-- Hiển thị thông báo lỗi đăng nhập nếu có -->
+<!-- Hiển thị thông báo lỗi đăng nhập -->
 @if(session('error'))
   <div class="error-message">
     {{ session('error') }}
   </div>
 @endif
 
-<!-- Hiển thị thông báo lỗi đăng ký nếu có -->
+<!-- Hiển thị thông báo lỗi đăng ký-->
 @if($errors->any())
   <div class="error-message">
     <ul>
@@ -68,7 +81,7 @@
   </div>
 @endif
 
-<!-- Form Đăng Nhập -->
+
 <form id="sign-in-form" action="/login" method="POST">
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <table>
@@ -88,7 +101,7 @@
   </table>
 </form>
 
-<!-- Form Đăng Ký -->
+
 <form id="sign-up-form" action="/register" method="POST" class="hidden">
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <table>
@@ -118,17 +131,24 @@
 </form>
 
 <script>
-  // Script hiển thị form đăng nhập hoặc đăng ký
+  
   const signInForm = document.getElementById('sign-in-form');
-  const signUpForm = document.getElementById('sign-up-form');
-  document.getElementById('show-sign-in').addEventListener('click', () => {
+const signUpForm = document.getElementById('sign-up-form');
+
+document.querySelectorAll('#show-sign-in').forEach(button => {
+  button.addEventListener('click', () => {
     signUpForm.classList.add('hidden');
     signInForm.classList.remove('hidden');
   });
-  document.getElementById('show-sign-up').addEventListener('click', () => {
+});
+
+document.querySelectorAll('#show-sign-up').forEach(button => {
+  button.addEventListener('click', () => {
     signInForm.classList.add('hidden');
     signUpForm.classList.remove('hidden');
   });
+});
+
 </script>
 </body>
 </html>
