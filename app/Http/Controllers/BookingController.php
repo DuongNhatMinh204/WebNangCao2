@@ -69,5 +69,15 @@ class BookingController extends Controller
             ], 500);
         }
     }
+    public function getUserBookings()
+    {
+        $user = Auth::user(); // Lấy user đang đăng nhập
+        if (!$user) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
 
+        $bookings = Booking::where('user_id', $user->id)->get();
+
+        return response()->json($bookings);
+    }
 }

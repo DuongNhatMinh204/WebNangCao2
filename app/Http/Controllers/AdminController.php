@@ -7,12 +7,16 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function listAccounts()
+    public function showBookings()
     {
-        // Lấy tất cả booking từ cơ sở dữ liệu
-        $bookings = Booking::all();
-
-        // Trả về view với dữ liệu bookings
-        return view('admin_account', compact('bookings'));
+        $bookings = Booking::all(); // Lấy tất cả dữ liệu từ bảng bookings
+        return view('admin_booking', compact('bookings'));
     }
+    public function deleteBooking($id)
+    {
+        $booking = Booking::findOrFail($id);
+        $booking->delete();
+        return redirect()->route('admin.bookings')->with('success', 'Booking deleted successfully!');
+    }
+
 }

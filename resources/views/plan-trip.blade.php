@@ -134,27 +134,32 @@
 
 </script>
 <script>
-  fetch('/booking/details')
-    .then(response => response.json())
-    .then(data => {
+  fetch('/booking/details', {
+      headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      }
+  })
+  .then(response => response.json())
+  .then(data => {
       const tableBody = document.querySelector('tbody');
       tableBody.innerHTML = '';
       data.forEach(booking => {
-        const row = `
-          <tr>
-            <td><input type="checkbox"></td>
-            <td>${booking.id}</td>
-            <td>${booking.palaceName}</td>
-            <td>${booking.numberOfPeople}</td>
-            <td>${booking.checkinTime}</td>
-            <td>${booking.checkoutTime}</td>
-            <td>${booking.hotel}</td>
-            <td>Chưa Thanh Toán</td>
-          </tr>
-        `;
-        tableBody.innerHTML += row;
+          const row = `
+              <tr>
+                  <td><input type="checkbox"></td>
+                  <td>${booking.id}</td>
+                  <td>${booking.palaceName}</td>
+                  <td>${booking.numberOfPeople}</td>
+                  <td>${booking.checkinTime}</td>
+                  <td>${booking.checkoutTime}</td>
+                  <td>${booking.hotel}</td>
+                  <td>Chưa Thanh Toán</td>
+              </tr>
+          `;
+          tableBody.innerHTML += row;
       });
-    }).catch(error => console.error('Error fetching booking details : ', error));
+  })
+  .catch(error => console.error('Error fetching booking details:', error));
   ;
 </script>
 <script>
@@ -166,8 +171,8 @@
       fetch(`/booking/delete/${tripId}`, {
         method: 'DELETE',
         headers: {
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Thêm CSRF token nếu cần
-        },
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
+        }
       })
         .then(response => response.json())
         .then(data => {
