@@ -78,6 +78,7 @@ class BookingController extends Controller
 
         $bookings = Booking::where('user_id', $user->id)->get();
 
-        return response()->json($bookings);
+        // return response()->json($bookings);
+        return view('plan-trip', compact('bookings')); // Trả về view với dữ liệu booking
     }
 }

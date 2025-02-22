@@ -48,9 +48,9 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/plan-trip', function () {
-    return view('plan-trip');
-})->name('plan-trip');
+// Route::get('/plan-trip', function () {
+//     return view('plan-trip');
+// })->name('plan-trip');
 Route::get('/user', function () {
     return view('user');
 })->name('user');
@@ -65,9 +65,9 @@ Route::get('/admin', function () {
     return view('admin_account');
 })->name('admin'); // doi thanh name moi dc con dung middleware lai khong duoc 
 
-// Route::get('/admin_booking', function () {
-//     return view('admin_booking');
-// })->name('admin_booking');
+Route::get('/admin_booking', function () {
+    return view('admin_booking');
+})->name('admin_booking');
 
 Route::post("/booking/create",[BookingController::class,'create'])->name('booking.create') ;
 
@@ -94,4 +94,4 @@ Route::get('/', function () {
 Route::get('/admin_booking', [AdminController::class, 'showBookings'])->name('admin.bookings');
 Route::delete('/admin/bookings/{id}', [AdminController::class, 'deleteBooking'])->name('admin.deleteBooking');
 
-Route::get('/booking/details', [BookingController::class, 'getUserBookings'])->middleware('auth');
+Route::get('/plan-trip', [BookingController::class, 'getUserBookings'])->middleware('auth')->name('plan-trip');

@@ -109,11 +109,19 @@
         </tr>
       </thead>
       <tbody>
+        @foreach ($bookings as $booking)
         <tr>
-
+            <td><input type="checkbox" class="select-trip" data-id="{{ $booking->id }}"></td>
+            <td>{{ $booking->id }}</td>
+            <td>{{ $booking->palaceName }}</td>
+            <td>{{ $booking->numberOfPeople }}</td>
+            <td>{{ $booking->checkinTime }}</td>
+            <td>{{ $booking->checkoutTime }}</td>
+            <td>{{ $booking->hotel }}</td>
+            <td>Chưa Thanh Toán</td>
         </tr>
-
-      </tbody>
+        @endforeach
+    </tbody>
     </table>
 
     <div class="btn-container">
@@ -133,35 +141,7 @@
   });
 
 </script>
-<script>
-  fetch('/booking/details', {
-      headers: {
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      }
-  })
-  .then(response => response.json())
-  .then(data => {
-      const tableBody = document.querySelector('tbody');
-      tableBody.innerHTML = '';
-      data.forEach(booking => {
-          const row = `
-              <tr>
-                  <td><input type="checkbox"></td>
-                  <td>${booking.id}</td>
-                  <td>${booking.palaceName}</td>
-                  <td>${booking.numberOfPeople}</td>
-                  <td>${booking.checkinTime}</td>
-                  <td>${booking.checkoutTime}</td>
-                  <td>${booking.hotel}</td>
-                  <td>Chưa Thanh Toán</td>
-              </tr>
-          `;
-          tableBody.innerHTML += row;
-      });
-  })
-  .catch(error => console.error('Error fetching booking details:', error));
-  ;
-</script>
+<
 <script>
   document.getElementById('cancel-btn').addEventListener('click', function () {
     const selectedRow = document.querySelector('input[type="checkbox"]:checked');
