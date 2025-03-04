@@ -79,7 +79,7 @@ Route::delete('/booking/delete/{id}', [BookingController::class, 'delete'])->nam
 // Route::get('admin/accounts', [AdminController::class, 'listAccounts'])->name('admin.accounts');
 
 
-use App\Http\Controllers\Auth\ChangePasswordController;
+use App\Http\Controllers\Auth\ChangePasswordController; 
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('password.change');
