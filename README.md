@@ -28,6 +28,8 @@ Trang web là một hệ thống quản lý và đặt tour du lịch trực tuy
 ```bash
 composer install
 ```
+![image](https://github.com/user-attachments/assets/32b52d7a-7b4f-4fc2-9457-41e059612420)
+
 
 ### 2. Cấu hình môi trường
 - Sao chép tệp `.env.example` thành `.env`
